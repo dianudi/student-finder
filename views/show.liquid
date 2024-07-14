@@ -1,0 +1,68 @@
+{% layout 'templates/base.liquid' %}
+{% assign title = student.dataumum.nm_pd %}
+
+{% block content %}
+{% render 'components/navbar.liquid' %}
+
+<div class="container">
+<h1 class="fs-2 text-center mt-4">Detail Mahasiswa</h1>
+<ul class="list-group mb-3">
+  <li class="list-group-item">Nama: {{student.dataumum.nm_pd}}</li>
+  <li class="list-group-item">Jenis Kelamin: {{student.dataumum.jk}}</li>
+  <li class="list-group-item">NIM: {{student.dataumum.nipd}}</li>
+  <li class="list-group-item">Universitas: {{student.dataumum.namapt}}</li>
+  <li class="list-group-item">Jenjang: {{student.dataumum.namajenjang}}</li>
+  <li class="list-group-item">Prodi: {{student.dataumum.namaprodi}}</li>
+  <li class="list-group-item">Lulus: {% if  student.dataumum.ket_keluar%} {{ student.dataumum.ket_keluar}} {%  else %} Belum {% endif %} </li>
+</ul>
+<h2 class="fs-4">Status Studi</h2>
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Semester</th>
+      <th scope="col">SKS</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in student.datastatuskuliah %}
+        <tr>
+            <td>{{- forloop.index }}</td>
+          <td>{{item.id_smt}}</td>
+          <td>{{item.sks_smt}}</td>
+          <td>{{item.nm_stat_mhs}}</td>
+        </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+<h2 class="fs-4">Detail Studi</h2>
+<div class="table-responsive">
+
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ID</th>
+      <th scope="col">Nama</th>
+      <th scope="col">SKS</th>
+      <th scope="col">Semester</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in student.datastudi %}
+        <tr>
+          <th scope="row">{{- forloop.index }}</th>
+          <td>{{item.kode_mk}}</td>
+          <td class="text-truncate"  style="max-width: 150px;">{{item.nm_mk}}</td>
+          <td>{{item.sks_mk}}</td>
+          <td>{{item.id_smt}}</td>
+        </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+</div>
+</div>
+{% endblock %}

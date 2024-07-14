@@ -1,0 +1,17 @@
+services:
+  student-finder:
+    build: .
+    image: dianudi/student-finder
+    container_name: student-finder
+    environment:
+      - MHS_URL=example.com
+    ports:
+      - 80:3000
+#     networks:
+#       default:
+#         ipv4_address: "192.168.10.4"
+
+# networks:
+#   default:
+#     name: http-proxy-network
+#     external: true

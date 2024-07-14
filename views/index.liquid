@@ -1,0 +1,25 @@
+{% layout 'templates/base.liquid' %}
+
+{% assign title = 'Home' %}
+{% block content %}
+   {% render 'components/navbar.liquid' %}
+   {% render 'components/hero.liquid', query:query %}
+   <div class="container">
+      {% if students %}
+         <div class="text-center fw-bold fs-3 mb-1">Hasil</div>
+         <ul class="list-group">
+         {% for student in students %}
+         <li class="list-group-item py-3">
+            <a href="/student/{{student.id}}" class="text-decoration-none text-white w-full  d-block">
+               <span class="fs-6">{{student.name}}</span> <br>
+               <small class="text-info">{{student.university}}</small> <br>
+               <small class="text-success">{{student.prodi}}</small>
+            </a>
+         </li>
+      {% endfor %}   
+
+      </ul>
+      {% endif %}
+
+      </div>
+{% endblock %}
